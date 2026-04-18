@@ -1,7 +1,7 @@
 import requests
 import streamlit as st
 
-@st.cache_data(ttl=360, show_spinner=False)
+@st.cache_data(ttl='1hr', show_spinner=False)
 def search_apps(query, limit, country="sg"):
     """Search for apps in the App Store using the iTunes Search API"""
     url = "https://itunes.apple.com/search"
@@ -22,7 +22,7 @@ def search_apps(query, limit, country="sg"):
     except Exception as e:
         return {"error": str(e)}
 
-@st.cache_data(ttl=360)
+@st.cache_data(ttl='1hr')
 def fetch_reviews(app_id, country="sg", sort="mostRecent", pages=10):
     """Fetch reviews for a specific app using the iTunes RSS feed."""
     reviews = []
