@@ -46,21 +46,9 @@ if "app_query_results" in st.session_state:
     st.caption(f"{count} results found")
     for app in apps:
         icon = app.get("artworkUrl100", "").replace("100x100", "200x200")
-        description = app['description']
         name = app['trackName']
-        rating = app['averageUserRating']
-        curr_version_rating = app['averageUserRatingForCurrentVersion']
-        price = app['formattedPrice']
-        currency = app['currency']
-        file_size = app["fileSizeBytes"]
-        content_rating = app['trackContentRating']
-        genres = app['genres']
         developer = app['sellerName']
-        artist = app['artistName']
-        version = app['version']
-        current_version_release_date = app['currentVersionReleaseDate']
-        user_rating_count = app['userRatingCount']
-        app_id = app['trackId']
+        app_id = int(app['trackId'])
 
         icon_col, desc_col, info_col = st.columns([1,3,1], vertical_alignment='center')
         with icon_col:
@@ -71,4 +59,5 @@ if "app_query_results" in st.session_state:
         with info_col:
             if st.button("See More", key=name, use_container_width=True):
                 st.session_state['selected_app'] = app
+                st.session_state['selected_country'] = country_query
                 st.switch_page('pages/Analytics.py')
